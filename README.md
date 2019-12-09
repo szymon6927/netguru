@@ -1,2 +1,4 @@
 # netguru
-Netguru goals
+
+Repo for netguru goals
+
