@@ -5,14 +5,14 @@ from flask import request
 from sqlalchemy import and_
 from flask_sqlalchemy import SQLAlchemy
 
+from config import DB_URI
+
 from models import MoviesMovie
 from models import MoviesComment
 from models import MoviesMovierating
 
 app = Flask(__name__)
-app.config[
-    "SQLALCHEMY_DATABASE_URI"
-] = "sqlite:////Users/szymonmiks/Dev/projekty_prywatne/movies_rest_api/movies_rest_api/db.sqlite3"
+app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 db = SQLAlchemy(app)
 
 
