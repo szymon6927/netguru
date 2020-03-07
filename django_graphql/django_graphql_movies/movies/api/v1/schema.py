@@ -26,17 +26,17 @@ class Query(ObjectType):
         actor_id = kwargs.get('id')
 
         if not actor_id:
-            return Actor.objects.get(pk=actor_id)
+            return None
 
-        return None
+        return Actor.objects.get(pk=actor_id)
 
     def resolve_movie(self, info, **kwargs):
         movie_id = kwargs.get('id')
 
         if not movie_id:
-            return Movie.objects.get(pk=movie_id)
+            return None
 
-        return None
+        return Movie.objects.get(pk=movie_id)
 
     def resolve_actors(self, info, **kwargs):
         return Actor.objects.all()
@@ -151,9 +151,12 @@ class UpdateMovie(graphene.Mutation):
         return UpdateMovie(ok=True, movie=movie_instance)
 
 
-class Mutation(graphene.ObjectType):
+class Mutation(ObjectType):
     create_actor = CreateActor.Field()
     update_actor = UpdateActor.Field()
     create_movie = CreateMovie.Field()
     update_movie = UpdateMovie.Field()
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
 
