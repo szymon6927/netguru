@@ -5,20 +5,20 @@ which will help in python serverless (AWS Lambda) development in day to day basi
 
 ## Layers
 
-During development in serverless environment it happens quite often that we need to share pieces of code 
-between lambdas. As a developers we want to restrict the DRY rule.
+During development in a serverless environment, it happens quite often that we need to share pieces of code 
+between lambdas. As developers, we want to follow the DRY rule.
 
 We have 3 options:
 - duplicate the code in every lambda
-- create our own package and install it as a dependency (mostly some internal pacakge repository will be requrired)
+- create our own package and install it as a dependency (mostly some internal package repository will be required)
 - use a lambda layer
 
 
-Here I would like to present a few interesintg articles about lambda layers which should make the whole
-introduction process a little bit easier:
+Here I would like to present a few interesting articles about lambda layers which should make the whole introduction process a little bit easier:
 - <https://medium.com/@adhorn/getting-started-with-aws-lambda-layers-for-python-6e10b1f9a5d>
 - <https://medium.com/better-programming/how-to-build-both-kinds-of-aws-lambda-layers-yes-there-are-two-edb945979f17>
 - <https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html>
+
 
 
 *Additional note*
@@ -34,11 +34,11 @@ AWS offers a few pre-build layers, so eg. if you need `numpy` or `scipy` you can
 [python-lambda-local](https://pypi.org/project/python-lambda-local/) allows you to debug your lambda functions
 locally with eg. pycharm debugger.
 
-Here is a great article with the whole explanation how to use this package:
+Here is a great article with the whole explanation of how to use this package:
 <https://medium.com/@bezdelev/how-to-test-a-python-aws-lambda-function-locally-with-pycharm-run-configurations-6de8efc4b206>
 
 
-I would like to attach simple snippet of python code which can be useful.
+I would like to attach a simple snippet of python code which can be useful.
 
 ```python
 from lambda_local import main
@@ -66,9 +66,11 @@ to debug function. Save configuration and click debug button.
 
 ### moto
 
-Personally in my day to day basis I'm using [moto](https://github.com/spulec/moto) library, and I would
-recommend to use it in your project too. I know there are alternatives but in my opinion this library is enough,
-beside that the usage is really simple and straight forward.
+Personally, in my day to day basis I'm using [moto](https://github.com/spulec/moto) library, 
+and I would recommend to use it in your project too. 
+I know there are alternatives but in my opinion, this library is enough, 
+besides that the usage is really simple and straight forward.
+
 
 Let's start with examples:
 
@@ -187,19 +189,19 @@ def dynamodb():
         dynamodb_client.delete_table(TableName=table_name)
 ```
 
-There are also a lot more AWS services which you can easily mock with `moto` like: `sns, cloudwatch, cognitoidp`.
+There are also a lot more AWS services that you can easily mock with moto like `moto` like: `sns, cloudwatch, cognitoidp`.
 
 
 ## Tools
 
 During work in AWS environment, it happens very often to call services via API endpoint or call some service/command
-with AWS permissions, and to speed this thing up (no via aws console) I would like to show you two tools which 
+with AWS permissions. I would like to show you two tools which 
 are useful in above cases.
 
 
 #### AWS Vault
 
-[AWS Vault](https://github.com/99designs/aws-vault) - this is a tool which allow you to access multiple AWS credentials.
+[AWS Vault](https://github.com/99designs/aws-vault) - this is a tool which allows you to access multiple AWS credentials.
 
 Tutorial how to add specific profiles is well described in the project documentation, lets start with real use cases.
 
@@ -210,7 +212,7 @@ pre-prod
 prod
 ```
 
-and you want to call some AWS service eg. `s3` bucket to list elements you can easly call:
+and you want to call some AWS service eg. `s3` bucket to list elements you can easily call:
 ```
 $ aws-vault exec <your-profile-specific-env> -- aws s3 ls
 ```
@@ -238,8 +240,8 @@ $ aws-vault exec <your-profile-specific-env> -- awscurl --service execute-api -X
 
 ## Serverless framework plugins
 
-In this section I would like to show the most usable serverless frameworks plugins. 
-The list will contains these one which I think are the most useful.
+In this section, I would like to show the most usable serverless frameworks plugins. 
+The list will contain these which I think are the most useful.
 
 
 #### [serverless-plugin-composed-vars](https://www.serverless.com/plugins/serverless-plugin-composed-vars/)
@@ -260,14 +262,14 @@ Use it when you want to use KMS key in your lambda.
 
 #### [serverless-python-requirements](https://www.npmjs.com/package/serverless-python-requirements)
 
-It make python dependencies management much easier, based on `requirements.txt` the bundle will be
+It makes python dependencies management much easier, based on `requirements.txt` the bundle will be
 automatically generated.
 
 Also it's worth to look at this blog post -> <https://www.serverless.com/blog/serverless-python-packaging/>
 
 #### [serverless-iam-roles-per-function](https://www.npmjs.com/package/serverless-iam-roles-per-function)
 
-Define IAM permission per function !
+Define IAM permission per function!
 
 #### [serverless-latest-layer-version](https://www.npmjs.com/package/serverless-latest-layer-version)
 
